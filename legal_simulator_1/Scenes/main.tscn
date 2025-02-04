@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://btydx8d7os386"]
+
+[ext_resource type="Script" path="res://Scripts/skibidi.gd" id="1_46oh5"]
+[ext_resource type="Texture2D" uid="uid://djdr7a1xx1ss6" path="res://import/cs.png" id="1_egvdq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uw0k2"]
+size = Vector2(324, 248)
+
+[node name="Main" type="Node2D"]
+
+[node name="Node" type="Node" parent="."]
+
+[node name="Skibidi" type="Node2D" parent="."]
+position = Vector2(603, 337)
+script = ExtResource("1_46oh5")
+
+[node name="Area2D" type="Area2D" parent="Skibidi"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Skibidi/Area2D"]
+shape = SubResource("RectangleShape2D_uw0k2")
+
+[node name="Sprite2D" type="Sprite2D" parent="Skibidi"]
+texture = ExtResource("1_egvdq")
+
+[connection signal="input_event" from="Skibidi/Area2D" to="Skibidi" method="_on_area_2d_input_event"]
