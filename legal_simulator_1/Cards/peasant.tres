@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="card" load_steps=2 format=3 uid="uid://cnxn22615xdfu"]
+
+[ext_resource type="Script" path="res://Scripts/Card.gd" id="1_x27ww"]
+
+[resource]
+script = ExtResource("1_x27ww")
+name = "Peasant"
+value = 25

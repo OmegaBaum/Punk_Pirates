@@ -1,3 +1,0 @@
-
-
-var Sigma = 0
