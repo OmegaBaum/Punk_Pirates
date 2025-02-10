@@ -1,17 +1,45 @@
-[gd_scene load_steps=7 format=3 uid="uid://btydx8d7os386"]
+[gd_scene load_steps=11 format=3 uid="uid://btydx8d7os386"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_6qlxa"]
 [ext_resource type="Script" path="res://scripts/camera.gd" id="2_wauon"]
+[ext_resource type="Texture2D" uid="uid://bm1vench0uwnv" path="res://textures/Bricks_01-512x512.png" id="3_o766e"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8hcyo"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_q25w0"]
 
+[sub_resource type="BoxMesh" id="BoxMesh_lex4t"]
+size = Vector3(0.5, 0.2, 1)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_75nkc"]
 size = Vector3(10, 5, 10)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b5jwx"]
+albedo_texture = ExtResource("3_o766e")
+uv1_scale = Vector3(0.2, 0.2, 0.2)
+uv1_triplanar = true
+
 [sub_resource type="BoxMesh" id="BoxMesh_hji3w"]
+lightmap_size_hint = Vector2i(104, 106)
+material = SubResource("StandardMaterial3D_b5jwx")
 size = Vector3(10, 5, 10)
+
+[sub_resource type="GDScript" id="GDScript_pqk0h"]
+script/source = "extends Node
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
+func action():
+	print(\"leck eier\")
+"
 
 [node name="Node3D" type="Node3D"]
 
@@ -24,6 +52,11 @@ shape = SubResource("CapsuleShape3D_8hcyo")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="player"]
 mesh = SubResource("CapsuleMesh_q25w0")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="player/MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -0.5)
+mesh = SubResource("BoxMesh_lex4t")
+skeleton = NodePath("../..")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.965926, 0.183013, -0.183013, 0, 0.707107, 0.707107, 0.258819, -0.683013, 0.683013, 0, 3, 4)
@@ -53,3 +86,6 @@ shape = SubResource("BoxShape3D_75nkc")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D2"]
 mesh = SubResource("BoxMesh_hji3w")
+
+[node name="Interactive" type="Node3D" parent="."]
+script = SubResource("GDScript_pqk0h")
