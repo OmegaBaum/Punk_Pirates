@@ -57,3 +57,9 @@ fire1={
 [physics]
 
 3d/default_gravity=40.0
+
+[rendering]
+
+anti_aliasing/quality/msaa_3d=1
+anti_aliasing/quality/screen_space_aa=1
+anti_aliasing/quality/use_taa=true

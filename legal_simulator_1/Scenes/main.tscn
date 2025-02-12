@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://btydx8d7os386"]
+[gd_scene load_steps=22 format=3 uid="uid://btydx8d7os386"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_6qlxa"]
 [ext_resource type="Script" path="res://scripts/camera.gd" id="2_wauon"]
@@ -67,6 +67,20 @@ sky_material = SubResource("PanoramaSkyMaterial_h2h02")
 [sub_resource type="Environment" id="Environment_lxbsm"]
 background_mode = 2
 sky = SubResource("Sky_h7ga8")
+sky_rotation = Vector3(0, 3.14159, 0)
+ssao_enabled = true
+ssao_radius = 2.0
+ssil_enabled = true
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_e4qpw"]
+friction = 0.0
+rough = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_6ujfv"]
+size = Vector3(1.5, 1.5, 1.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_frlny"]
+size = Vector3(1.5, 1.5, 1.5)
 
 [node name="Node3D" type="Node3D"]
 
@@ -91,7 +105,9 @@ skeleton = NodePath("../..")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.965926, 0.183013, -0.183013, 0, 0.707107, 0.707107, 0.258819, -0.683013, 0.683013, 0, 3, 4)
+transform = Transform3D(-0.819152, -0.345187, 0.458079, 0, 0.798636, 0.601815, -0.573576, 0.492978, -0.654204, 0, 8, 4)
+light_color = Color(1, 0.756863, 0.4, 1)
+shadow_enabled = true
 
 [node name="Camera" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
@@ -136,3 +152,16 @@ script = SubResource("GDScript_pqk0h")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_lxbsm")
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 4, 0)
+
+[node name="Box" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 7, -9.5)
+physics_material_override = SubResource("PhysicsMaterial_e4qpw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Box"]
+mesh = SubResource("BoxMesh_6ujfv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Box"]
+shape = SubResource("BoxShape3D_frlny")
