@@ -95,6 +95,8 @@ script = ExtResource("2_wauon")
 [node name="Camera3D" type="Camera3D" parent="Camera"]
 transform = Transform3D(0.902585, 0.257886, -0.344724, 0, 0.800731, 0.599023, 0.430511, -0.54067, 0.722728, 0, 6.295, 6)
 
+[node name="SmoothTarget" type="Node3D" parent="Camera"]
+
 [node name="door" type="Node3D" parent="."]
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
