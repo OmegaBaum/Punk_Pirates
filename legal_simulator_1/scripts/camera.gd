@@ -3,6 +3,8 @@ extends Node3D
 var target
 const lerpSpeed = 5
 
+@onready var camera = $Camera3D
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	target = $"../player"
