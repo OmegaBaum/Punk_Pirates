@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://btydx8d7os386"]
+[gd_scene load_steps=20 format=3 uid="uid://btydx8d7os386"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_6qlxa"]
 [ext_resource type="Script" path="res://scripts/camera.gd" id="2_wauon"]
@@ -11,6 +11,8 @@
 
 [sub_resource type="BoxMesh" id="BoxMesh_lex4t"]
 size = Vector3(0.5, 0.2, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_m6ena"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_3s0xh"]
 size = Vector3(20, 5, 10)
@@ -87,8 +89,10 @@ skeleton = NodePath("../..")
 
 [node name="PlayerRotation" type="Node3D" parent="Player"]
 
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player/PlayerRotation"]
+mesh = SubResource("BoxMesh_m6ena")
+
 [node name="ProjectileSpawner" type="Node3D" parent="Player/PlayerRotation"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.965926, 0.183013, -0.183013, 0, 0.707107, 0.707107, 0.258819, -0.683013, 0.683013, 0, 3, 4)
