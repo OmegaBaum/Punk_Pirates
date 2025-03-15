@@ -1,9 +1,10 @@
-[gd_scene load_steps=22 format=3 uid="uid://btydx8d7os386"]
+[gd_scene load_steps=24 format=3 uid="uid://btydx8d7os386"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_6qlxa"]
 [ext_resource type="Script" path="res://scripts/camera.gd" id="2_wauon"]
 [ext_resource type="Texture2D" uid="uid://bm1vench0uwnv" path="res://textures/Bricks_01-512x512.png" id="3_o766e"]
 [ext_resource type="Texture2D" uid="uid://b2tnugsngadad" path="res://textures/skyboxes/syferfontein_1d_clear_puresky.jpg" id="4_ec3yc"]
+[ext_resource type="Script" path="res://scripts/sensor.gd" id="5_kvicl"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8hcyo"]
 
@@ -82,6 +83,8 @@ size = Vector3(1.5, 1.5, 1.5)
 [sub_resource type="BoxShape3D" id="BoxShape3D_frlny"]
 size = Vector3(1.5, 1.5, 1.5)
 
+[sub_resource type="BoxMesh" id="BoxMesh_15x5n"]
+
 [node name="Node3D" type="Node3D"]
 
 [node name="Player" type="CharacterBody3D" parent="."]
@@ -153,7 +156,7 @@ script = SubResource("GDScript_pqk0h")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_lxbsm")
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+[node name="character" type="CharacterBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 4, 0)
 
 [node name="Box" type="RigidBody3D" parent="."]
@@ -165,3 +168,11 @@ mesh = SubResource("BoxMesh_6ujfv")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Box"]
 shape = SubResource("BoxShape3D_frlny")
+
+[node name="Sensor" type="Node3D" parent="." node_paths=PackedStringArray("item_to_sense")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 3, 2)
+script = ExtResource("5_kvicl")
+item_to_sense = NodePath("../Box")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Sensor"]
+mesh = SubResource("BoxMesh_15x5n")

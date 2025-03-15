@@ -5,7 +5,7 @@ const SPEED = 5.0
 const JUMP_VELOCITY = 10
 const ROTATION_SPEED = 10
 
-var projectile = preload("res://objects/slice_projectile.tscn")
+var projectile = preload("res://objects/hurt_box.tscn")
 
 @onready var mesh = $MeshInstance3D
 @onready var camera = $"../Camera/Camera3D"
