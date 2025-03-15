@@ -25,7 +25,6 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("fire1"):
 		var p = projectile.instantiate()
 		get_parent().add_child(p)
-		print(p)
 		p.position = projectile_spawner.global_position
 		p.rotation = projectile_spawner.global_rotation
 

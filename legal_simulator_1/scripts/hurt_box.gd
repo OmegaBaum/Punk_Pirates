@@ -1,6 +1,6 @@
 extends Area3D
 
-var leckeier = 5
+@export var damage: int = 5
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -14,3 +14,12 @@ func _process(delta: float) -> void:
 
 func _on_timer_timeout() -> void:
 	queue_free()
+
+
+func _on_area_entered(hitbox: Area3D) -> void:
+	print(hitbox)
+	if hitbox == null || hitbox.owner == null:
+		return
+	
+	if hitbox.owner.has_method("on_hit"):
+		hitbox.owner.on_hit(damage)
