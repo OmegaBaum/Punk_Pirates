@@ -82,7 +82,7 @@ script = SubResource("GDScript_pqk0h")
 environment = SubResource("Environment_lxbsm")
 
 [node name="Enemy" parent="." instance=ExtResource("5_ouvbm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 1, 0)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_psyd5")

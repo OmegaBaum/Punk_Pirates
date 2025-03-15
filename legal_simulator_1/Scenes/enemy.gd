@@ -2,15 +2,17 @@ extends CharacterBody3D
 
 @onready var target_player = $"../Player"
 @onready var health_bar: ProgressBar = $SubViewport/ProgressBar
-const SPEED = 4.0
+const SPEED = 3.0
 const JUMP_VELOCITY = 4.5
 var projectile = preload("res://objects/hurt_box.tscn")
 @onready var enemy_rotation = $EnemyRotation
 @onready var projectile_spawner = $EnemyRotation/ProjectileSpawner
+@export var range: float = 2
+
 
 # AI
 @onready var nav = $NavigationAgent3D
-@export var range: float = 2
+@export var attack_radius: float = 1.5
 @export var attack_cooldown: float = 2
 var current_cooldown_time: float = 0
 
@@ -23,9 +25,13 @@ func _ready() -> void:
 	update_health()
 
 func _physics_process(delta: float) -> void:
+	
+	if not is_on_floor():
+		velocity += get_gravity() * delta
+
 	if (target_player == null):
 		return
-	if position.distance_to(target_player.position) < range:
+	if position.distance_to(target_player.position) < attack_radius:
 		attack()
 	
 	var next_location = nav.get_next_path_position()
@@ -47,15 +53,21 @@ func attack():
 		get_parent().add_child(p)
 		p.position = projectile_spawner.global_position
 		p.rotation = projectile_spawner.global_rotation
+		p.scale = Vector3(range, range, range)
+		p.source = position
 		current_cooldown_time = attack_cooldown
 	
 
-func on_hit(dmg: int):
-	health -= dmg
+func on_hit(source: Vector3, damage: int, knockback: float):
+	health -= damage
 	update_health()
-	print(health)
+	# apply knockback
+	var direction: Vector3 = (position - source).normalized()
+	velocity = direction * knockback
+	
 
 func update_health():
 	health_bar.value = health
+	# check if dead
 	if (health <= 0):
 		queue_free()

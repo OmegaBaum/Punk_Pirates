@@ -1,7 +1,12 @@
 extends Area3D
 
+# stats
 @export var damage: int = 5
+@export var knockback = 7
+
 @export var friendly: bool = false
+
+var source: Vector3 = Vector3.ZERO
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -26,4 +31,5 @@ func _on_area_entered(hitbox: Area3D) -> void:
 		return
 	
 	if hitbox.owner.has_method("on_hit"):
-		hitbox.owner.on_hit(damage)
+		hitbox.owner.on_hit(source, damage, knockback)
+		

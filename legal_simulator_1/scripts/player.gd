@@ -4,6 +4,7 @@ extends CharacterBody3D
 const SPEED = 5.0
 const JUMP_VELOCITY = 10
 const ROTATION_SPEED = 10
+const RANGE = 2
 
 var projectile = preload("res://objects/hurt_box_friendly.tscn")
 
@@ -54,11 +55,15 @@ func attack():
 	get_parent().add_child(p)
 	p.position = projectile_spawner.global_position
 	p.rotation = projectile_spawner.global_rotation
+	p.scale = Vector3(RANGE, RANGE, RANGE)
+	p.source = position
 
-func on_hit(dmg: int):
-	health -= dmg
+func on_hit(source: Vector3, damage: int, knockback: float):
+	health -= damage
 	update_health()
-	print(health)
+	# apply knockback
+	var direction: Vector3 = (position - source).normalized()
+	velocity = direction * knockback * 5
 
 func update_health():
 	health_bar.value = health

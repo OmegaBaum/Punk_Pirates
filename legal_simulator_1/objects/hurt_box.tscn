@@ -7,10 +7,10 @@ albedo_color = Color(1, 0, 0, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_g7nqc"]
 material = SubResource("StandardMaterial3D_ags2d")
-size = Vector3(2, 0.2, 1)
+size = Vector3(1, 0.1, 0.5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_s2mgl"]
-size = Vector3(2, 0.2, 1)
+size = Vector3(1, 0.1, 0.5)
 
 [node name="HurtBox" type="Area3D"]
 collision_layer = 2
