@@ -1,23 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://btydx8d7os386"]
+[gd_scene load_steps=14 format=3 uid="uid://btydx8d7os386"]
 
 [ext_resource type="PackedScene" uid="uid://7t51kfycui40" path="res://objects/player.tscn" id="1_vgqr6"]
 [ext_resource type="Script" path="res://scripts/camera.gd" id="2_wauon"]
 [ext_resource type="Texture2D" uid="uid://bm1vench0uwnv" path="res://textures/Bricks_01-512x512.png" id="3_o766e"]
 [ext_resource type="Texture2D" uid="uid://b2tnugsngadad" path="res://textures/skyboxes/syferfontein_1d_clear_puresky.jpg" id="4_ec3yc"]
 [ext_resource type="PackedScene" uid="uid://c7yd7pt2qjsyx" path="res://objects/enemy.tscn" id="5_ouvbm"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_3s0xh"]
-size = Vector3(20, 8, 10)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b5jwx"]
-albedo_texture = ExtResource("3_o766e")
-uv1_scale = Vector3(0.2, 0.2, 0.2)
-uv1_triplanar = true
-
-[sub_resource type="BoxMesh" id="BoxMesh_aaave"]
-lightmap_size_hint = Vector2i(104, 106)
-material = SubResource("StandardMaterial3D_b5jwx")
-size = Vector3(20, 8, 10)
 
 [sub_resource type="GDScript" id="GDScript_pqk0h"]
 script/source = "extends Node
@@ -50,10 +37,27 @@ ssao_enabled = true
 ssao_radius = 2.0
 ssil_enabled = true
 
+[sub_resource type="NavigationMesh" id="NavigationMesh_psyd5"]
+vertices = PackedVector3Array(-19.5, 0.5, -19.5, -19.5, 0.5, 19.5, 19.5, 0.5, 19.5, 19.5, 0.5, -19.5)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3s0xh"]
+size = Vector3(40, 10, 40)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b5jwx"]
+albedo_texture = ExtResource("3_o766e")
+uv1_scale = Vector3(0.2, 0.2, 0.2)
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_aaave"]
+lightmap_size_hint = Vector2i(104, 106)
+material = SubResource("StandardMaterial3D_b5jwx")
+size = Vector3(40, 10, 40)
+
 [node name="Node3D" type="Node3D"]
 
 [node name="Player" parent="." instance=ExtResource("1_vgqr6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.819152, -0.345187, 0.458079, 0, 0.798636, 0.601815, -0.573576, 0.492978, -0.654204, 0, 8, 4)
@@ -71,15 +75,6 @@ transform = Transform3D(0.902585, 0.257886, -0.344724, 0, 0.800731, 0.599023, 0.
 
 [node name="door" type="Node3D" parent="."]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-shape = SubResource("BoxShape3D_3s0xh")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
-mesh = SubResource("BoxMesh_aaave")
-
 [node name="Interactive" type="Node3D" parent="."]
 script = SubResource("GDScript_pqk0h")
 
@@ -87,4 +82,16 @@ script = SubResource("GDScript_pqk0h")
 environment = SubResource("Environment_lxbsm")
 
 [node name="Enemy" parent="." instance=ExtResource("5_ouvbm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 1, 0)
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_psyd5")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/StaticBody3D"]
+shape = SubResource("BoxShape3D_3s0xh")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/StaticBody3D"]
+mesh = SubResource("BoxMesh_aaave")
