@@ -1,0 +1,75 @@
+[gd_scene load_steps=8 format=3 uid="uid://7t51kfycui40"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_ufrha"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8hcyo"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_q25w0"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_lex4t"]
+size = Vector3(0.5, 0.2, 1)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_yxdwc"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nh6ca"]
+bg_color = Color(0.58, 0, 0.203, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j6smq"]
+bg_color = Color(1, 0, 0.352941, 1)
+
+[node name="Player" type="CharacterBody3D" groups=["friendly"]]
+script = ExtResource("1_ufrha")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_8hcyo")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_q25w0")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -0.5)
+mesh = SubResource("BoxMesh_lex4t")
+skeleton = NodePath("../..")
+
+[node name="PlayerRotation" type="Node3D" parent="."]
+
+[node name="ProjectileSpawner" type="Node3D" parent="PlayerRotation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="Area3D" type="Area3D" parent="." groups=["friendly"]]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("CapsuleShape3D_8hcyo")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.362, 0, 2, 0)
+billboard = 1
+texture = SubResource("ViewportTexture_yxdwc")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(455, 129)
+
+[node name="ProgressBar" type="ProgressBar" parent="SubViewport"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -227.5
+offset_top = -44.5
+offset_right = 22.5
+offset_bottom = -4.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+pivot_offset = Vector2(15, 20)
+theme_override_constants/outline_size = 20
+theme_override_styles/background = SubResource("StyleBoxFlat_nh6ca")
+theme_override_styles/fill = SubResource("StyleBoxFlat_j6smq")
+max_value = 20.0
+step = 0.1
+value = 20.0

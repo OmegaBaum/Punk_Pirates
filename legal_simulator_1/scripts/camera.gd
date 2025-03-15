@@ -15,8 +15,9 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	position = position.lerp(target.position, delta * lerpSpeed)
+	if (target != null):
+		position = position.lerp(target.position, delta * lerpSpeed)
 	
-	smooth_target.position = lerp(smooth_target.position, target.position, delta * rotation_lerp_speed)
-	camera.look_at(smooth_target.position, Vector3.UP)
+		smooth_target.position = lerp(smooth_target.position, target.position, delta * rotation_lerp_speed)
+		camera.look_at(smooth_target.position, Vector3.UP)
 	

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bp2opsap4p3f7"]
+
+[ext_resource type="PackedScene" uid="uid://ckh7ac6ogicys" path="res://objects/hurt_box.tscn" id="1_jd602"]
+
+[node name="HurtBox_friendly" instance=ExtResource("1_jd602")]
+friendly = true

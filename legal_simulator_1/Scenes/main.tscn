@@ -1,20 +1,13 @@
-[gd_scene load_steps=16 format=3 uid="uid://btydx8d7os386"]
+[gd_scene load_steps=13 format=3 uid="uid://btydx8d7os386"]
 
-[ext_resource type="Script" path="res://scripts/player.gd" id="1_6qlxa"]
+[ext_resource type="PackedScene" uid="uid://7t51kfycui40" path="res://objects/player.tscn" id="1_vgqr6"]
 [ext_resource type="Script" path="res://scripts/camera.gd" id="2_wauon"]
 [ext_resource type="Texture2D" uid="uid://bm1vench0uwnv" path="res://textures/Bricks_01-512x512.png" id="3_o766e"]
 [ext_resource type="Texture2D" uid="uid://b2tnugsngadad" path="res://textures/skyboxes/syferfontein_1d_clear_puresky.jpg" id="4_ec3yc"]
 [ext_resource type="PackedScene" uid="uid://c7yd7pt2qjsyx" path="res://objects/enemy.tscn" id="5_ouvbm"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8hcyo"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_q25w0"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_lex4t"]
-size = Vector3(0.5, 0.2, 1)
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_3s0xh"]
-size = Vector3(20, 5, 10)
+size = Vector3(20, 8, 10)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b5jwx"]
 albedo_texture = ExtResource("3_o766e")
@@ -24,7 +17,7 @@ uv1_triplanar = true
 [sub_resource type="BoxMesh" id="BoxMesh_aaave"]
 lightmap_size_hint = Vector2i(104, 106)
 material = SubResource("StandardMaterial3D_b5jwx")
-size = Vector3(20, 5, 10)
+size = Vector3(20, 8, 10)
 
 [sub_resource type="GDScript" id="GDScript_pqk0h"]
 script/source = "extends Node
@@ -59,25 +52,8 @@ ssil_enabled = true
 
 [node name="Node3D" type="Node3D"]
 
-[node name="Player" type="CharacterBody3D" parent="."]
+[node name="Player" parent="." instance=ExtResource("1_vgqr6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
-script = ExtResource("1_6qlxa")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
-shape = SubResource("CapsuleShape3D_8hcyo")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
-mesh = SubResource("CapsuleMesh_q25w0")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Player/MeshInstance3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -0.5)
-mesh = SubResource("BoxMesh_lex4t")
-skeleton = NodePath("../..")
-
-[node name="PlayerRotation" type="Node3D" parent="Player"]
-
-[node name="ProjectileSpawner" type="Node3D" parent="Player/PlayerRotation"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.819152, -0.345187, 0.458079, 0, 0.798636, 0.601815, -0.573576, 0.492978, -0.654204, 0, 8, 4)
@@ -111,4 +87,4 @@ script = SubResource("GDScript_pqk0h")
 environment = SubResource("Environment_lxbsm")
 
 [node name="Enemy" parent="." instance=ExtResource("5_ouvbm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 3.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 5, 0)

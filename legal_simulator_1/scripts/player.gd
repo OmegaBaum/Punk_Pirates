@@ -5,13 +5,21 @@ const SPEED = 5.0
 const JUMP_VELOCITY = 10
 const ROTATION_SPEED = 10
 
-var projectile = preload("res://objects/hurt_box.tscn")
+var projectile = preload("res://objects/hurt_box_friendly.tscn")
+
+@onready var health_bar: ProgressBar = $SubViewport/ProgressBar
+var max_health: int = 20
+var health: int
 
 @onready var mesh = $MeshInstance3D
 @onready var camera = $"../Camera/Camera3D"
 @onready var player_rotation = $PlayerRotation
 @onready var projectile_spawner = $PlayerRotation/ProjectileSpawner
 
+func _ready() -> void:
+	health = max_health
+	health_bar.max_value = max_health
+	update_health()
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -23,10 +31,7 @@ func _physics_process(delta: float) -> void:
 		velocity.y = JUMP_VELOCITY
 	
 	if Input.is_action_just_pressed("fire1"):
-		var p = projectile.instantiate()
-		get_parent().add_child(p)
-		p.position = projectile_spawner.global_position
-		p.rotation = projectile_spawner.global_rotation
+		attack()
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -43,3 +48,19 @@ func _physics_process(delta: float) -> void:
 	
 	
 	move_and_slide()
+func attack():
+	mesh.rotation.y = player_rotation.rotation.y
+	var p = projectile.instantiate()
+	get_parent().add_child(p)
+	p.position = projectile_spawner.global_position
+	p.rotation = projectile_spawner.global_rotation
+
+func on_hit(dmg: int):
+	health -= dmg
+	update_health()
+	print(health)
+
+func update_health():
+	health_bar.value = health
+	if (health <= 0):
+		queue_free()
