@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://7t51kfycui40"]
+[gd_scene load_steps=13 format=3 uid="uid://7t51kfycui40"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_ufrha"]
 [ext_resource type="PackedScene" uid="uid://bogg1nhk6n5xa" path="res://models/Katana.blend" id="2_fkwrn"]
+[ext_resource type="PackedScene" uid="uid://dg5r2pmmwflg0" path="res://objects/health_bar.tscn" id="3_bxfjs"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8hcyo"]
 
@@ -12,51 +13,6 @@ size = Vector3(0.5, 0.2, 1)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_yxdwc"]
 viewport_path = NodePath("SubViewport")
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nh6ca"]
-bg_color = Color(0.58, 0, 0.203, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j6smq"]
-bg_color = Color(1, 0, 0.352941, 1)
-
-[sub_resource type="Animation" id="Animation_kunky"]
-resource_name = "IDLE"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MeshInstance3D/Katana:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-1.40438, 0, 2.93205)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("MeshInstance3D/Katana:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.591498, 0, -0.164854)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("MeshInstance3D:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
 
 [sub_resource type="Animation" id="Animation_427ww"]
 resource_name = "ATTACK"
@@ -98,6 +54,45 @@ tracks/2/keys = {
 "args": [],
 "method": &"attack_end"
 }]
+}
+
+[sub_resource type="Animation" id="Animation_kunky"]
+resource_name = "IDLE"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D/Katana:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1.40438, 0, 2.93205)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D/Katana:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.591498, 0, -0.164854)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MeshInstance3D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_8wfrm"]
@@ -179,7 +174,7 @@ mesh = SubResource("BoxMesh_lex4t")
 skeleton = NodePath("../..")
 
 [node name="Katana" parent="MeshInstance3D" instance=ExtResource("2_fkwrn")]
-transform = Transform3D(-0.978126, -0.208014, 0, 0.0344576, -0.162027, 0.986184, -0.20514, 0.964613, 0.16565, 0.591498, 0, -0.164854)
+transform = Transform3D(-0.978126, -0.208013, 0, 0.0344571, -0.162026, 0.986184, -0.205139, 0.964613, 0.165649, 0.591498, 0, -0.164854)
 
 [node name="PlayerRotation" type="Node3D" parent="."]
 
@@ -200,28 +195,9 @@ texture = SubResource("ViewportTexture_yxdwc")
 
 [node name="SubViewport" type="SubViewport" parent="."]
 transparent_bg = true
-size = Vector2i(455, 129)
+size = Vector2i(500, 200)
 
-[node name="ProgressBar" type="ProgressBar" parent="SubViewport"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -227.5
-offset_top = -44.5
-offset_right = 22.5
-offset_bottom = -4.5
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(2, 2)
-pivot_offset = Vector2(15, 20)
-theme_override_constants/outline_size = 20
-theme_override_styles/background = SubResource("StyleBoxFlat_nh6ca")
-theme_override_styles/fill = SubResource("StyleBoxFlat_j6smq")
-max_value = 20.0
-step = 0.1
-value = 20.0
+[node name="HealthBar" parent="SubViewport" instance=ExtResource("3_bxfjs")]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

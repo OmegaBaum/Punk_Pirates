@@ -1,0 +1,101 @@
+[gd_scene load_steps=6 format=3 uid="uid://dg5r2pmmwflg0"]
+
+[ext_resource type="Script" path="res://scripts/health_bar.gd" id="1_k841s"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mln2w"]
+bg_color = Color(0.18359, 0.18359, 0.18359, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y2k2a"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s25uk"]
+bg_color = Color(0.18, 0.18, 0.18, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x6hla"]
+bg_color = Color(1, 0, 0.352941, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 0, 0.35, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+shadow_size = 10
+
+[node name="HealthBar" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -576.0
+offset_top = -324.0
+offset_right = 576.0
+offset_bottom = 324.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_k841s")
+
+[node name="ProgressBarWhite" type="ProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -115.0
+offset_top = -19.0
+offset_right = 115.0
+offset_bottom = 11.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(15, 20)
+theme_override_constants/outline_size = 20
+theme_override_styles/background = SubResource("StyleBoxFlat_mln2w")
+theme_override_styles/fill = SubResource("StyleBoxFlat_y2k2a")
+max_value = 20.0
+step = 0.1
+value = 18.0
+show_percentage = false
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -115.0
+offset_top = -19.0
+offset_right = 115.0
+offset_bottom = 11.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(15, 20)
+theme_override_constants/outline_size = 20
+theme_override_styles/background = SubResource("StyleBoxFlat_s25uk")
+theme_override_styles/fill = SubResource("StyleBoxFlat_x6hla")
+max_value = 20.0
+step = 0.1
+value = 10.0
+show_percentage = false

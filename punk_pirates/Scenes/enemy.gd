@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
 @onready var target_player = $"../Player"
-@onready var health_bar: ProgressBar = $SubViewport/ProgressBar
+@onready var health_bar = $SubViewport/HealthBar
 const SPEED = 3.0
 const JUMP_VELOCITY = 4.5
 var projectile = preload("res://objects/hurt_box.tscn")
@@ -21,7 +21,7 @@ var health: int
 
 func _ready() -> void:
 	health = max_health
-	health_bar.max_value = max_health
+	health_bar.set_max_value(max_health)
 	update_health()
 
 func _physics_process(delta: float) -> void:

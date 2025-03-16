@@ -9,7 +9,7 @@ const ATTACK_COOLDOWN: float = 0.3
 
 var projectile = preload("res://objects/hurt_box_friendly.tscn")
 
-@onready var health_bar: ProgressBar = $SubViewport/ProgressBar
+@onready var health_bar = $SubViewport/HealthBar
 var max_health: int = 20
 var health: int
 
@@ -24,7 +24,7 @@ var is_attacking = false
 
 func _ready() -> void:
 	health = max_health
-	health_bar.max_value = max_health
+	health_bar.set_max_value(max_health)
 	update_health()
 
 func _physics_process(delta: float) -> void:

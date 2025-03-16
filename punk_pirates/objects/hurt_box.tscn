@@ -11,7 +11,22 @@ material = SubResource("StandardMaterial3D_ags2d")
 size = Vector3(1, 0.1, 0.5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_s2mgl"]
-size = Vector3(1, 0.1, 0.5)
+size = Vector3(0.8, 0.1, 0.5)
+
+[sub_resource type="Animation" id="Animation_hk4rk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
 
 [sub_resource type="Animation" id="Animation_0axvr"]
 resource_name = "SLASH"
@@ -27,21 +42,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5, 7]
-}
-
-[sub_resource type="Animation" id="Animation_hk4rk"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite3D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_uvwwq"]
@@ -68,7 +68,7 @@ one_shot = true
 autostart = true
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(-0.293627, -1.60073, -4.2222e-08, 0, -7.24386e-08, 1, -1.09583, 0.428915, 1.13133e-08, 0, 0, -0.129504)
+transform = Transform3D(-2.38419e-07, -1.6572, -4.37114e-08, 0, -7.24386e-08, 1, -1.13449, 6.85453e-07, -4.79616e-14, 0, 0, -0.0380703)
 flip_v = true
 texture = ExtResource("2_f0mds")
 hframes = 8
