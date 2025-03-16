@@ -10,6 +10,7 @@ var source: Vector3 = Vector3.ZERO
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	$AnimationPlayer.play("SLASH")
 	pass # Replace with function body.
 
 

@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://ckh7ac6ogicys"]
+[gd_scene load_steps=9 format=3 uid="uid://ckh7ac6ogicys"]
 
 [ext_resource type="Script" path="res://scripts/hurt_box.gd" id="1_jcyrc"]
+[ext_resource type="Texture2D" uid="uid://chg2y258st57" path="res://textures/FX/slash.png" id="2_f0mds"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ags2d"]
 albedo_color = Color(1, 0, 0, 1)
@@ -12,12 +13,50 @@ size = Vector3(1, 0.1, 0.5)
 [sub_resource type="BoxShape3D" id="BoxShape3D_s2mgl"]
 size = Vector3(1, 0.1, 0.5)
 
+[sub_resource type="Animation" id="Animation_0axvr"]
+resource_name = "SLASH"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 7]
+}
+
+[sub_resource type="Animation" id="Animation_hk4rk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uvwwq"]
+_data = {
+"RESET": SubResource("Animation_hk4rk"),
+"SLASH": SubResource("Animation_0axvr")
+}
+
 [node name="HurtBox" type="Area3D"]
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_jcyrc")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
 mesh = SubResource("BoxMesh_g7nqc")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -27,6 +66,17 @@ shape = SubResource("BoxShape3D_s2mgl")
 wait_time = 0.2
 one_shot = true
 autostart = true
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(-0.293627, -1.60073, -4.2222e-08, 0, -7.24386e-08, 1, -1.09583, 0.428915, 1.13133e-08, 0, 0, -0.129504)
+flip_v = true
+texture = ExtResource("2_f0mds")
+hframes = 8
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_uvwwq")
+}
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
