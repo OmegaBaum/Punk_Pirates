@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://c4gh3cx78x5en"]
+
+[ext_resource type="PackedScene" uid="uid://7hjblx00yutg" path="res://models/Palm_Tree.blend" id="1_pu80f"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vmlvk"]
+radius = 0.0886728
+height = 3.36944
+
+[node name="PalmTree" type="StaticBody3D"]
+
+[node name="Palm_Tree" parent="." instance=ExtResource("1_pu80f")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.978578, -0.20588, 0, 0.20588, 0.978578, 0, 0, 0, 1, -0.567147, 1.55333, 0)
+shape = SubResource("CapsuleShape3D_vmlvk")
+
+[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="."]

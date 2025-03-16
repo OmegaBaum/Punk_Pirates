@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bq0scfg3iiuvs"]
+
+[ext_resource type="Texture2D" uid="uid://dxl8tcgc1dpn7" path="res://textures/palm_tree_bark_diff_4k.jpg" id="1_lj3r6"]
+
+[resource]
+albedo_texture = ExtResource("1_lj3r6")

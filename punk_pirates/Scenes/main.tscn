@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://btydx8d7os386"]
+[gd_scene load_steps=21 format=3 uid="uid://btydx8d7os386"]
 
 [ext_resource type="PackedScene" uid="uid://7t51kfycui40" path="res://objects/player.tscn" id="1_vgqr6"]
 [ext_resource type="Script" path="res://scripts/camera.gd" id="2_wauon"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://bvxxrk3ugyx3q" path="res://Scenes/main_slot0_normal_roughness.png" id="9_b67uj"]
 [ext_resource type="Texture2D" uid="uid://c1g7s4oawh10x" path="res://textures/terrain/rock/Stone_14-512x512.png" id="9_wui44"]
 [ext_resource type="Texture2D" uid="uid://bngcgbqcwow6g" path="res://textures/terrain/sand/Dirt_14-512x512.png" id="10_qvaf1"]
+[ext_resource type="PackedScene" uid="uid://c4gh3cx78x5en" path="res://objects/palm_tree.tscn" id="12_4s4nc"]
 
 [sub_resource type="GDScript" id="GDScript_pqk0h"]
 script/source = "extends Node
@@ -50,12 +51,12 @@ script = ExtResource("7_hvntb")
 mode = 0
 textures = [[ExtResource("8_g3hoo"), ExtResource("9_wui44"), ExtResource("10_qvaf1")], [ExtResource("9_b67uj"), null, null]]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nclne"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pvy6w"]
 transparency = 1
-albedo_color = Color(0, 1, 0.74902, 0.533333)
+albedo_color = Color(0.0117647, 0.780392, 0.537255, 0.678431)
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_ia4fn"]
-material = SubResource("StandardMaterial3D_nclne")
+[sub_resource type="PlaneMesh" id="PlaneMesh_60wqi"]
+material = SubResource("StandardMaterial3D_pvy6w")
 size = Vector2(250, 250)
 
 [node name="Node3D" type="Node3D"]
@@ -88,6 +89,15 @@ environment = SubResource("Environment_lxbsm")
 [node name="Enemy" parent="." instance=ExtResource("5_ouvbm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 129.729, 14.4926, 128.275)
 
+[node name="PalmTree" parent="." instance=ExtResource("12_4s4nc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 112.445, 18.7908, 128.572)
+
+[node name="PalmTree2" parent="." instance=ExtResource("12_4s4nc")]
+transform = Transform3D(-1.08363, 0.126829, 0.485066, 0.135138, 1.18629, -0.00828196, -0.482817, 0.0473841, -1.09099, 122.697, 17.2943, 122.605)
+
+[node name="PalmTree3" parent="." instance=ExtResource("12_4s4nc")]
+transform = Transform3D(-0.323476, 0.0448671, 1.14846, 0.499856, 1.07983, 0.0986033, -1.03495, 0.507509, -0.311331, 113.559, 18.2979, 139.55)
+
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_psyd5")
 
@@ -111,5 +121,23 @@ shader_params/u_triplanar = null
 shader_params/u_tile_reduction = null
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 125, 0.338631, 125)
-mesh = SubResource("PlaneMesh_ia4fn")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 125, 0, 125)
+mesh = SubResource("PlaneMesh_60wqi")
+
+[node name="PalmTree4" parent="." instance=ExtResource("12_4s4nc")]
+transform = Transform3D(1.05143, -0.164016, -0.879531, 0.356077, 1.32177, 0.179184, 0.820783, -0.363313, 1.04895, 77.0384, 6.88685, 49.82)
+
+[node name="PalmTree5" parent="." instance=ExtResource("12_4s4nc")]
+transform = Transform3D(1.02964, -0.257599, -0.145904, 0.276323, 1.02573, 0.139051, 0.106256, -0.171268, 1.05223, 76.4974, 6.88685, 50.6198)
+
+[node name="PalmTree9" parent="." instance=ExtResource("12_4s4nc")]
+transform = Transform3D(1.49546, 0.35341, -0.0934914, -0.332154, 1.47804, 0.274117, 0.152686, -0.246106, 1.51201, 80.5609, 6.88685, 54.3936)
+
+[node name="PalmTree6" parent="." instance=ExtResource("12_4s4nc")]
+transform = Transform3D(1.06705, -0.0414213, 0.0864886, 0.0540653, 1.0579, -0.160381, -0.0792021, 0.164102, 1.05575, 68.9654, 6.83929, 38.8052)
+
+[node name="PalmTree7" parent="." instance=ExtResource("12_4s4nc")]
+transform = Transform3D(-0.584696, -0.153321, -1.20843, 0.0681865, 1.33421, -0.202271, 1.21621, -0.148512, -0.569617, 68.9654, 6.83929, 38.8052)
+
+[node name="PalmTree8" parent="." instance=ExtResource("12_4s4nc")]
+transform = Transform3D(0.853827, -0.16395, -0.793609, 0.0594049, 1.16238, -0.176221, 0.808187, 0.0877684, 0.851379, 68.6817, 6.83929, 34.7166)
