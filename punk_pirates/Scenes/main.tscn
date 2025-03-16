@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://btydx8d7os386"]
+[gd_scene load_steps=20 format=3 uid="uid://btydx8d7os386"]
 
 [ext_resource type="PackedScene" uid="uid://7t51kfycui40" path="res://objects/player.tscn" id="1_vgqr6"]
 [ext_resource type="Script" path="res://scripts/camera.gd" id="2_wauon"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://dg58sh4dhyf2l" path="res://Scenes/main_slot0_albedo_bump.png" id="8_g3hoo"]
 [ext_resource type="Texture2D" uid="uid://bvxxrk3ugyx3q" path="res://Scenes/main_slot0_normal_roughness.png" id="9_b67uj"]
 [ext_resource type="Texture2D" uid="uid://c1g7s4oawh10x" path="res://textures/terrain/rock/Stone_14-512x512.png" id="9_wui44"]
+[ext_resource type="Texture2D" uid="uid://bngcgbqcwow6g" path="res://textures/terrain/sand/Dirt_14-512x512.png" id="10_qvaf1"]
 
 [sub_resource type="GDScript" id="GDScript_pqk0h"]
 script/source = "extends Node
@@ -47,7 +48,7 @@ ssil_enabled = true
 [sub_resource type="Resource" id="Resource_6w1ss"]
 script = ExtResource("7_hvntb")
 mode = 0
-textures = [[ExtResource("8_g3hoo"), ExtResource("9_wui44")], [ExtResource("9_b67uj"), null]]
+textures = [[ExtResource("8_g3hoo"), ExtResource("9_wui44"), ExtResource("10_qvaf1")], [ExtResource("9_b67uj"), null, null]]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nclne"]
 transparency = 1
@@ -91,25 +92,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 129.729, 14.4926, 128.275)
 navigation_mesh = SubResource("NavigationMesh_psyd5")
 
 [node name="HTerrain" type="Node3D" parent="NavigationRegion3D"]
-script = ExtResource("5_fthgn")
-map_scale = Vector3(0.5, 1, 0.5)
-_terrain_data = ExtResource("6_hp1vf")
-chunk_size = 32
-collision_enabled = true
-collision_layer = 1
-collision_mask = 1
-shader_type = "Classic4Lite"
-custom_shader = null
-custom_globalmap_shader = null
-texture_set = SubResource("Resource_6w1ss")
-render_layers = 1
-cast_shadow = 1
-shader_params/u_ground_uv_scale = 20
-shader_params/u_depth_blending = true
-shader_params/u_triplanar = null
-shader_params/u_tile_reduction = null
-
-[node name="HTerrain2" type="Node3D" parent="NavigationRegion3D"]
 script = ExtResource("5_fthgn")
 map_scale = Vector3(0.5, 1, 0.5)
 _terrain_data = ExtResource("6_hp1vf")

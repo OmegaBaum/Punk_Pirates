@@ -21,3 +21,4 @@ func _process(delta: float) -> void:
 func set_max_value(value):
 	max_value = value
 	progress_bar.max_value = max_value
+	progress_bar_white.max_value = max_value

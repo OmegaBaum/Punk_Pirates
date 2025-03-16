@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
 
-const SPEED = 5.0
+const SPEED = 7.0
 const JUMP_VELOCITY = 10
 const ROTATION_SPEED = 10
 const RANGE = 3
@@ -10,7 +10,7 @@ const ATTACK_COOLDOWN: float = 0.3
 var projectile = preload("res://objects/hurt_box_friendly.tscn")
 
 @onready var health_bar = $SubViewport/HealthBar
-var max_health: int = 20
+var max_health: int = 40
 var health: int
 
 var current_cooldown_time: float = 0
