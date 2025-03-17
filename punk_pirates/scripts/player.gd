@@ -17,7 +17,7 @@ var current_cooldown_time: float = 0
 var is_attacking = false
 
 @onready var mesh = $MeshInstance3D
-@onready var camera = $"../Camera/Camera3D"
+@onready var camera = get_viewport().get_camera_3d().get_parent()
 @onready var player_rotation = $PlayerRotation
 @onready var projectile_spawner = $PlayerRotation/ProjectileSpawner
 @onready var anim = $AnimationPlayer

@@ -159,7 +159,7 @@ _data = {
 "WALK": SubResource("Animation_f12dq")
 }
 
-[node name="Player" type="CharacterBody3D" groups=["friendly"]]
+[node name="Player" type="CharacterBody3D" groups=["friendly", "player"]]
 script = ExtResource("1_ufrha")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -181,7 +181,7 @@ transform = Transform3D(-0.978126, -0.208013, 0, 0.0344571, -0.162026, 0.986184,
 [node name="ProjectileSpawner" type="Node3D" parent="PlayerRotation"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
 
-[node name="Area3D" type="Area3D" parent="." groups=["friendly"]]
+[node name="Area3D" type="Area3D" parent="." groups=["friendly", "player"]]
 collision_layer = 3
 collision_mask = 3
 
